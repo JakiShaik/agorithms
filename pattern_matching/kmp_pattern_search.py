@@ -1,0 +1,38 @@
+from collections import defaultdict
+
+def create_lsp_table(a):
+    visited = defaultdict(int)
+    lsp_table = defaultdict(int)
+    for i,ele in enumerate(a):
+        if ele in visited:
+            lsp_table[i] = visited[ele]+1
+        else:
+            lsp_table[i] = 0
+            visited[ele] = i
+    return lsp_table
+
+
+def kmp(str1,str2):
+    str2 = '#'+str2
+    lsp_table = create_lsp_table(str2)
+    print(lsp_table)
+    #str2 = '#'+str2
+    i=0
+    j=0
+    
+    while i < len(str1):
+        #print(i)
+        if str1[i] == str2[j+1]:
+            i += 1
+            j += 1
+            if j == len(str2)-1:
+                print('There is a match at '+str(i-j))
+                j = 0
+        else:
+            #print('j is '+str(j))
+            if j==0:
+                i +=1
+            else:
+                j = lsp_table[j]
+
+kmp('ababcabcabababd','ababd')
