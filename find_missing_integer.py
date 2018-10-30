@@ -1,4 +1,5 @@
 from collections import defaultdict
+#O(n) solution
 def find_missing(arr):
     if max(arr) < 0 or arr == []:
         return 1
