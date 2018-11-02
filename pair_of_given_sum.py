@@ -1,6 +1,7 @@
 from collections import defaultdict
 #using Hash table
 
+#Time complexity - O(n), Space complexity - O(n)
 def find_pair(arr,x):
     ele_dict = defaultdict(int)
     res = []
