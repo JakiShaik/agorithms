@@ -54,12 +54,37 @@ struct node * createLL() {
     
   }
 
+  struct node * reverse_from(struct node * head,int from) {
+    struct node * curr = head;
+    struct node * prev = NULL;
+    
+    while (curr->data != from) {
+      prev = curr;
+      curr = curr->next;
+    }
+    prev->next = NULL;
+    struct node * newHead = reverse(curr);
+    struct node * temp = newHead;
+
+    while(temp->next != NULL) {
+      temp = temp->next;
+    }
+    temp->next = head;
+    return newHead;
+
+  }
+
 int main() {
   struct node * head = createLL();
   printLL(head);
-  head = reverse(head);
+  //head = reverse(head);
   printf("################\n");
-  printf("Reversing the linkedlist\n");
+  printf("Reverse a linked list from a given node: Please enter the value\n");
+  int from;
+  scanf("%d",&from);
+  head = reverse_from(head,from);
   printLL(head);
+
+
 
 }
